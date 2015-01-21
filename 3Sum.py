@@ -51,24 +51,21 @@ class Solution:
                 
         for p in pos:
             for a,b in self.twoSum(neg,-p):
-                ret.append([a,b,p])
+                if [a,b,p] not in ret:
+                    ret.append([a,b,p])
             
         for n in neg:
             for a,b in self.twoSum(pos,-n):
-                ret.append([n,a,b])
+                if [n,a,b] not in ret:
+                    ret.append([n,a,b])
         
         if len(zero) >= 3:
             ret.append([0,0,0])
             
         if len(zero) > 0:
             for a,b in self.twoSum(neg+pos,0):
-                ret.append([a,0,b])
+                if [a,0,b] not in ret:
+                    ret.append([a,0,b])
                 
-                
-        results = []
-        for r in ret:
-            if r not in results:
-                results.append(r)
-                
-        return results
-
+        return ret
+        
