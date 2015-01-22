@@ -13,13 +13,8 @@ The solution set must not contain duplicate triplets.
 class Solution:
     # @return a list of lists of length 3, [[val1,val2,val3]]
     
-    def twoSum(self,s,target,cache = None):
+    def twoSum(self,s,target):
         
-        if cache:
-            r = cache.get(target)
-            if r:
-                return r
-                
         i = 0
         j = len(s)-1
         r = []
@@ -35,9 +30,6 @@ class Solution:
                 i += 1
             else:
                 j -= 1
-                
-        if cache:
-            cache[target] = r
             
         return r
                 
@@ -61,15 +53,13 @@ class Solution:
         pos = sorted(pos)
         neg = sorted(neg)
         
-        cache1 = {}
-        cache2 = {}
                 
         for p in set(pos):
-            for a,b in self.twoSum(neg,-p,cache1):
+            for a,b in self.twoSum(neg,-p):
                     ret.append([a,b,p])
             
         for n in set(neg):
-            for a,b in self.twoSum(pos,-n,cache2):
+            for a,b in self.twoSum(pos,-n):
                     ret.append([n,a,b])
         
         if len(zero) >= 3:
@@ -81,5 +71,3 @@ class Solution:
                     ret.append([a,0,b])
                 
         return ret
-
-
